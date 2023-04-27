@@ -1,0 +1,17 @@
+%windows technique for using Band pass filter
+clc;
+clear all;
+close all;
+M=input('Enter large window size:');
+wc1=input('Lower Cut off frequency less than pi: ');
+wc2=input('Upper Cut off frequency less than pi: ');
+wc=[wc1 wc2];
+window =fir1(M-1,wc/pi,'bandpass',boxcar(M));
+
+[Hz w]= freqz(window);
+Max= max(abs(Hz))
+plot(w, abs(Hz/Max),'r','linewidth',3);
+grid on;
+xlabel('Frequency');
+ylabel('Magnitude');
+title('FIR Filter');

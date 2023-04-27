@@ -1,0 +1,37 @@
+clc
+clear all;
+close all;
+%operations on the independent variable
+%time shifting of the independent variable
+x=input('enter the input sequence...');
+no=input('enter the time shift: ');
+l=length(x);
+subplot(2,2,1)
+stem(0:l-1,x,'linewidth', 5);
+xlabel('time')
+ylabel('amplitude')
+title('Input Signal');
+ 
+i=no:l+no-1;
+subplot(2,2,2)
+stem(i,x,'r','linewidth',5);
+xlabel('time')
+ylabel('Amplitude')
+title('Time shifting');
+
+%time scaling
+s= input('Enter time scaling factor: ');
+i = 1:s:l;
+subplot(2,2,3)
+stem(x(i),'g','linewidth',5);
+xlabel('time')
+ylabel('Amplitude')
+title('Time scaling')
+
+%time reversal
+subplot(2,2,4)
+i = 0:l-1
+n= stem(-1*i,x,'y','linewidth',5);
+xlabel('time')
+ylabel('amplitude')
+title('Folding (Time reversing) of signal')

@@ -1,0 +1,19 @@
+
+%LPF design using Hamming window by definition
+clc
+clear all
+close all
+M=input('Size of window:');
+wc=.2*pi;
+n = 0:(M-1);
+
+hd = sin(wc*(n-(M-1)/2))/(pi*(n-(M-1)/2))
+wH = hamming(M)
+hn = hd.*wH;
+[Hz w] = freqz(hn);
+Max= max(abs(Hz));
+plot(w, abs(Hz/Max),'r','linewidth',3);
+grid on;
+xlabel('Frequency');
+ylabel('Magnitude');
+title('FIR Filter');

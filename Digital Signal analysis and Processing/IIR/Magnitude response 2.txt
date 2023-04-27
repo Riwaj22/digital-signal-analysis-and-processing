@@ -1,0 +1,19 @@
+clear all
+close all
+clc
+%Given transfer function is H(z = (0. 5z^2 0 0.5)/(z^2  0. 25 z + 0.25)
+
+%The coeffs of Nr are .5, -.5 and that of Dr are 1, -.25 and .25)
+
+[Hz w] = freqz([.5 0 -.5], [1 -0.25 .25], 100);
+%[TF freq] = freqz([Nr coeffs], [Dr coeffs], no. of samples desired)
+
+Max= max(abs(Hz))
+plot(w, abs(Hz/Max));
+
+grid on;
+xlabel('Frequency (radians)');
+ylabel('Magnitude');
+
+
+

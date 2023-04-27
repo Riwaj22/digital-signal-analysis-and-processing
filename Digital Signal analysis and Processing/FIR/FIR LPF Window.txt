@@ -1,0 +1,14 @@
+%windows technique of Rectangular window for low pass filter design
+clc;
+clear all;
+close all;
+M=input('Size of window:');
+wc=.5*pi
+Window =fir1(M-1,wc/pi,boxcar(M));
+[Hz w] = freqz(Window);
+Max= max(abs(Hz))
+plot(w, abs(Hz/Max),'r','linewidth',3);
+grid on;
+xlabel('Frequency');
+ylabel('Magnitude');
+title('FIR Filter');

@@ -1,0 +1,38 @@
+clc;
+clear all;
+[p q] = butter(6, .3) %butter(Filter order, cut-off freq(range:0 to 1))
+
+% p = coeffs of powers of numerator of the transfer function 
+% q = coeffs of powers of denominator of the transfer function 
+
+[Hz w] = freqz(p, q, 100);
+%[TF freq] = freqz([Nr coeffs], [Dr coeffs], no. of samples desired)
+
+Max= max(abs(Hz))
+
+plot(w, abs(Hz/Max),'r','linewidth',3);
+
+grid on;
+hold on;
+[ p q] = cheby1( 6 , .15 , .3 ) %(filter order, attenuation in PB, cut-off(0 to 1)
+% p = coeffs of powers of numerator of the transfer function 
+% q = coeffs of powers of denominator of the transfer function
+[Hz w] = freqz(p, q, 100);
+%[TF freq] = freqz([Nr coeffs], [Dr coeffs], no. of samples desired)
+
+Max= max(abs(Hz))
+
+plot(w, abs(Hz/Max),'k','linewidth',3);
+
+hold on;
+[ p q] = cheby2( 6 , 20 , .3 ) %(filter order, attenuation in SB, cut-off(0 to 1))
+[Hz w] = freqz(p, q, 100);
+%[TF freq] = freqz([Nr coeffs], [Dr coeffs], no. of samples desired)
+
+Max= max(abs(Hz))
+
+plot(w, abs(Hz/Max),'g','linewidth',3);
+
+xlabel('Frequency (radians)');
+ylabel('Magnitude');
+legend('Butterworth','ChebyI','ChebyII')

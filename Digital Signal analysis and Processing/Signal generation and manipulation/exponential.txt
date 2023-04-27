@@ -1,0 +1,16 @@
+clc;
+clear all;
+close all;
+
+n=0:10;
+x=exp(-n);
+
+figure('Name','My decaying exponential')
+stem(n,x,'r','linewidth',5)
+
+
+
+title('exponential signal')
+
+xlabel('n')
+ylabel('x[n]')

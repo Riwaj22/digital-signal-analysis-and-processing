@@ -1,0 +1,88 @@
+clc;
+clear all;
+close all;
+%Get the sequence from user 
+disp('The sequence from the user:');
+xn=input('Enter the input sequence x(n)...');
+ 
+% To find the length of the sequence
+N=length(xn);
+ 
+%To initialize null array of DFT X[k] of same size as that of input sequence
+X=zeros(1,N);
+ 
+%code block to find the DFT of the sequence
+for k=0:N-1
+    for n=0:N-1
+        X(k+1)=X(k+1)+(xn(n+1)*exp((-i)*2*pi*k*n/N));
+    end
+end
+ 
+%code block to plot the input sequence
+n=0:N-1;
+subplot(2,2,1);
+stem(n,xn,'b','linewidth',4);
+ylabel ('Amplitude');
+xlabel ('Time');
+title ('Input Sequence x[n]');
+ 
+%code block to plot the X(k)
+disp('The DFT of x[n]is: X[k] = ');
+
+disp(X);
+ 
+% To find the magnitudes of individual DFT points
+magnitude = abs(X);
+ 
+%code block to plot the magnitude response
+%disp('The magnitude response of X(k)=')
+disp('magnitude response of X[k] is ');
+disp(magnitude)
+n=0:N-1;
+subplot(2,2,2);
+stem(n,magnitude,'k','linewidth',4);
+ylabel ('Amplitude');
+xlabel ('K');
+title('Magnitude response of X[k]')
+ 
+%To find the phases of individual DFT points
+phase = rad2deg(angle(X));
+ 
+%code block to plot the phase response
+disp('The phase response of X[k] is: ')
+disp(phase);
+n=0:N-1;
+subplot(2,2,3);
+stem(n,phase,'r','linewidth',4);
+ylabel ('Phase');
+xlabel ('K');
+title ('Phase Response of X[k]');
+ 
+ 
+
+
+%To initilise null array for x[n] of same size as that of input sequence
+x_new=zeros(1,N);
+ 
+
+ 
+
+% Code block to find the IDFT of the sequence
+for n=0:N-1
+    for k=0:N-1
+        x_new(n+1) = x_new(n+1)+(X(k+1)*exp(i*2*pi*k*n/N));
+    end
+end
+ 
+ 
+x_new=x_new/N;
+ 
+%code block to plot the output sequence
+
+n=0:N-1;
+subplot(2,2,4);
+stem(n,x_new,'m','linewidth',4);
+ylabel ('Amplitude');
+xlabel ('Time');
+title ('IDFT sequence x[n]');
+
